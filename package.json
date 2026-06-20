@@ -1,0 +1,13 @@
+{
+  "name": "nexus-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "tail": "tail -f journal/entries/journal.jsonl | grep 'TASK_\\|SESSION_\\|TRUST_\\|ROUTING_'",
+    "tail:all": "tail -f journal/entries/journal.jsonl",
+    "stats": "node -e \"const lines = require('fs').readFileSync('journal/entries/journal.jsonl','utf8').trim().split('\\n').filter(Boolean).map(l=>JSON.parse(l)); const counts={}; for(const l of lines) counts[l.type]=(counts[l.type]||0)+1; console.log(JSON.stringify(counts,null,2));\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.2"
+  }
+}
